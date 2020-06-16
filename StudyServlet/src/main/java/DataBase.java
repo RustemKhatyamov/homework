@@ -11,11 +11,11 @@ public class DataBase {
     public ArrayList<String> getPaths(String word) {
         ArrayList<String> paths = new ArrayList<String>();
         try {
-            String query = "select filePath, words_freq from files inner join \n" +
-                "(select files_fileid, words_freq from filewords inner join  words\n" +
-                "where filewords.words_words_id = words.words_id and words.words_code = ?) as t1\n" +
-                "where files.fileid = t1.files_fileid\n" +
-                "order by words_freq desc";
+            String query = "select distinct filePath from files\n" +
+                    "join filewords on filewords.files_fileid = files.fileid\n" +
+                    "join words on filewords.words_words_id = words.words_id\n" +
+                    "where words.words_code = ?\n" +
+                    "order by words_freq desc;\n";
             PreparedStatement state = conn.prepareStatement(query);
             state.setString(1, word);
             ResultSet result = state.executeQuery();
