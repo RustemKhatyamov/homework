@@ -1,0 +1,13 @@
+0:0:0:0:0:0:0:1 - - [15/Jun/2020:13:13:24 +0500] "GET / HTTP/1.1" 200 384 http-bio-3345-exec-1 916
+0:0:0:0:0:0:0:1 - - [15/Jun/2020:13:13:24 +0500] "GET /favicon.ico HTTP/1.1" 404 973 http-bio-3345-exec-3 4
+0:0:0:0:0:0:0:1 - - [15/Jun/2020:13:13:29 +0500] "POST /testServlet HTTP/1.1" 200 252 http-bio-3345-exec-4 736
+0:0:0:0:0:0:0:1 - - [15/Jun/2020:13:17:52 +0500] "GET / HTTP/1.1" 200 384 http-bio-3345-exec-1 77
+0:0:0:0:0:0:0:1 - - [15/Jun/2020:13:17:57 +0500] "POST /testServlet HTTP/1.1" 200 252 http-bio-3345-exec-3 424
+0:0:0:0:0:0:0:1 - - [15/Jun/2020:13:17:59 +0500] "GET /testServlet?filePath=C:\Users\xrk97\IdeaProjects\test\input1.txt HTTP/1.1" 200 39 http-bio-3345-exec-4 7
+0:0:0:0:0:0:0:1 - - [15/Jun/2020:13:52:35 +0500] "GET / HTTP/1.1" 200 1375 http-bio-3345-exec-1 787
+0:0:0:0:0:0:0:1 - - [15/Jun/2020:13:52:38 +0500] "POST /testServlet HTTP/1.1" 200 30 http-bio-3345-exec-3 239
+0:0:0:0:0:0:0:1 - - [15/Jun/2020:13:52:44 +0500] "POST /testServlet HTTP/1.1" 200 30 http-bio-3345-exec-4 9
+0:0:0:0:0:0:0:1 - - [15/Jun/2020:13:53:18 +0500] "GET / HTTP/1.1" 200 382 http-bio-3345-exec-1 685
+0:0:0:0:0:0:0:1 - - [15/Jun/2020:13:53:20 +0500] "POST /testServlet HTTP/1.1" 200 252 http-bio-3345-exec-3 223
+0:0:0:0:0:0:0:1 - - [15/Jun/2020:13:56:01 +0500] "GET / HTTP/1.1" 200 388 http-bio-3345-exec-1 699
+0:0:0:0:0:0:0:1 - - [15/Jun/2020:13:56:04 +0500] "POST /testServlet HTTP/1.1" 200 252 http-bio-3345-exec-3 225
