@@ -64,9 +64,9 @@ public class TestServlet extends HttpServlet {
 //        }
 
         String file = Files.readAllLines(Paths.get(filePath), StandardCharsets.UTF_8).toString();
+        file = file.replaceAll("\\p{P}","");
         if (f.exists()){
-            try (FileInputStream inputStream = new FileInputStream(f);
-            OutputStream outputStream = response.getOutputStream()){
+            try (OutputStream outputStream = response.getOutputStream()){
             String text = file;
             outputStream.write(text.getBytes());
             }
