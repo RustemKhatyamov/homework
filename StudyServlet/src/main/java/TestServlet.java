@@ -3,6 +3,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class TestServlet extends HttpServlet {
@@ -17,24 +19,22 @@ public class TestServlet extends HttpServlet {
         response.setHeader("Content-disposition", "attachment; filename=" + f.getName());
 
         //скачивание файла
-        Download(f, response);
+        Download(f, response, filePath);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            //получаем ключ из поля ввода
             PrintWriter writer = response.getWriter();
             String keyWord = request.getParameter("keyWord");
 
-            //запрос к БД
             DataBase db = new DataBase();
             ArrayList<String> paths = db.getPaths(keyWord);
 
-            //возвращение ответа клиенту
             Answer(paths, writer);
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -49,17 +49,29 @@ public class TestServlet extends HttpServlet {
             writer.println("По запросу ничего не найдено");
     }
 
-    private void Download(File f, HttpServletResponse response) {
-        if (f.exists()) {
-            try (FileInputStream is = new FileInputStream(f);
-                 OutputStream os = response.getOutputStream()) {
-                byte[] buf = new byte[4096];
-                int bytes = -1;
+    private void Download(File f, HttpServletResponse response, String filePath) throws IOException {
+//        if (f.exists()) {
+//            try (FileInputStream is = new FileInputStream(f);
+//                 OutputStream os = response.getOutputStream()) {
+//                byte[] buf = new byte[4096];
+//                int bytes = -1;
+//
+//                while ((bytes = is.read(buf)) != -1) {
+//                    os.write(buf, 0, bytes);
+//                }
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        }
 
-                while ((bytes = is.read(buf)) != -1) {
-                    os.write(buf, 0, bytes);
-                }
-            } catch (Exception e) {
+        String file = Files.readAllLines(Paths.get(filePath)).toString();
+        if (f.exists()){
+            try (FileInputStream inputStream = new FileInputStream(f);
+            OutputStream outputStream = response.getOutputStream()){
+            String text = file;
+            outputStream.write(text.getBytes());
+            }
+            catch (Exception e){
                 e.printStackTrace();
             }
         }
