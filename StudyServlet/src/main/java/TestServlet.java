@@ -3,6 +3,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -11,14 +12,12 @@ public class TestServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //получаем путь, по которому лежит файл
         String filePath = request.getParameter("filePath");
         File f = new File(filePath);
 
         response.setContentType("text/plain");
         response.setHeader("Content-disposition", "attachment; filename=" + f.getName());
 
-        //скачивание файла
         Download(f, response, filePath);
     }
 
@@ -52,7 +51,7 @@ public class TestServlet extends HttpServlet {
     private void Download(File f, HttpServletResponse response, String filePath) throws IOException {
 //        if (f.exists()) {
 //            try (FileInputStream is = new FileInputStream(f);
-//                 OutputStream os = response.getOutputStream()) {
+//                OutputStream os = response.getOutputStream()) {
 //                byte[] buf = new byte[4096];
 //                int bytes = -1;
 //
@@ -64,7 +63,7 @@ public class TestServlet extends HttpServlet {
 //            }
 //        }
 
-        String file = Files.readAllLines(Paths.get(filePath)).toString();
+        String file = Files.readAllLines(Paths.get(filePath), StandardCharsets.UTF_8).toString();
         if (f.exists()){
             try (FileInputStream inputStream = new FileInputStream(f);
             OutputStream outputStream = response.getOutputStream()){
