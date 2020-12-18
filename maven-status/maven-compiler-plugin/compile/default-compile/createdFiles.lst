@@ -1,0 +1,11 @@
+com\example\web\config\MvcConfig.class
+com\example\web\config\WebSecurityConfig.class
+com\example\web\controller\MainController.class
+com\example\web\domain\Role.class
+com\example\web\repos\MessageRepo.class
+com\example\web\domain\User.class
+com\example\web\controller\RegisController.class
+com\example\web\repos\UserRepo.class
+com\example\web\domain\Message.class
+com\example\web\service\UserService.class
+com\example\web\WebApplication.class
